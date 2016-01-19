@@ -3,7 +3,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-    'ngRoute','ngMaterial'
+    'ngRoute','ngMaterial', 'config'
 ]).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider

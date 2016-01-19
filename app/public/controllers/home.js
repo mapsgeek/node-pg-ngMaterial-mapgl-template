@@ -1,10 +1,10 @@
 angular.module('myApp')
 
-    .controller('HomeCtrl', function ($scope,$http,$rootScope,dataService) {
+    .controller('HomeCtrl', function ($scope,$http,$rootScope,dataService, ACCESS_TOKEN) {
 
         $scope.title = 'Sample Angular Node App!!';
 
-        mapboxgl.accessToken = 'accessToken';
+        mapboxgl.accessToken = ACCESS_TOKEN;
 
         var map = new mapboxgl.Map({
             container: 'map',

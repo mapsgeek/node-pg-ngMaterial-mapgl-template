@@ -26,12 +26,13 @@ it easier to serve the files by a webserver.*
 ### Create Postgres DB
 * Run script [1_build_db.sql](app/sql/1_build_db.sql)
 * Add [settings file](settings-example.js)
+* Update db credentials
+
+
+### Instantiate Map
+* Add [config file] (config-example.js)
+* Update accessToken
+
 
 ### Run the Application
-
-We have preconfigured the project with a simple development web server.  The simplest way to start
-this server is:
-
-```
-npm start
-```
+* node server.py
