@@ -22,6 +22,9 @@
     "prestart": "npm install"
   },
   "dependencies": {
-    "pg-native": "^1.10.0"
+    "pg-native": "^1.10.0",
+    "morgan": "^1.7.0",
+    "method-override": "^2.3.5",
+    "q": "^1.4.1"
   }
 }
