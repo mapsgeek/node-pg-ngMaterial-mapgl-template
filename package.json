@@ -1,7 +1,13 @@
 {
   "name": "node-pg-ngMaterial-mapgl-template",
+  "author": "Spatial Development International, LLC",
+
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:spatialdev/node-pg-ngMaterial-mapgl-template.git"
+  },
   "private": false,
-  "version": "4.0.0",
+  "version": "1.0.0",
   "description": "A starter project for AngularJS",
   "license": "MIT",
   "devDependencies": {

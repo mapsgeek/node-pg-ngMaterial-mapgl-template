@@ -35,4 +35,4 @@ it easier to serve the files by a webserver.*
 
 
 ### Run the Application
-* node server.py
+* node server.js
