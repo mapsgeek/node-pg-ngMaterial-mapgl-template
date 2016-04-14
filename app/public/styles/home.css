@@ -9,9 +9,9 @@ body { margin:0; padding:0; }
 
 #map {
     position: fixed;
-    width: 50%;
+    width: 100%;
     bottom: 0;
-    top: 100px;
+    top: 64px;
 }
 #features {
     width: 50%;
