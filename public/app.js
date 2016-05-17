@@ -8,10 +8,9 @@ angular.module('myApp', [
     config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'public/templates/home.html',
-                controller: 'HomeCtrl'
+                templateUrl: 'app/templates/map.html',
+                controller: 'MapCtrl'
             })
-
             .otherwise({
                 redirectTo: '/'
             });
