@@ -1,7 +1,6 @@
 {
   "name": "node-pg-ngMaterial-mapgl-template",
   "author": "Spatial Development International, LLC",
-
   "repository": {
     "type": "git",
     "url": "git@github.com:spatialdev/node-pg-ngMaterial-mapgl-template.git"
@@ -28,9 +27,10 @@
     "prestart": "npm install"
   },
   "dependencies": {
-    "pg-native": "^1.10.0",
-    "morgan": "^1.7.0",
+    "cheap-ruler": "^2.4.1",
     "method-override": "^2.3.5",
+    "morgan": "^1.7.0",
+    "pg-native": "^1.10.0",
     "q": "^1.4.1"
   }
 }

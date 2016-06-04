@@ -3,16 +3,19 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-    'ngRoute','ngMaterial', 'myApp.config'
+    'ngRoute','ngMaterial', 'myApp.config' ,'ui.router'
 ]).
-    config(['$routeProvider', function($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'app/templates/map.html',
+    config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+        $urlRouterProvider.otherwise("/map");
+
+        $stateProvider
+            .state('map', {
+                url: "/map/@{lat},{lng},{zoom}",
+                //url: "/map",
+                templateUrl: "app/templates/map.html",
                 controller: 'MapCtrl'
             })
-            .otherwise({
-                redirectTo: '/'
-            });
 
-    }]);
+        // use the HTML5 History API to remove the #hash in the URL
+        $locationProvider.html5Mode(true);
+    });
