@@ -1,22 +1,6 @@
 angular.module('myApp')
-    .controller('MapCtrl', function ($state, $stateParams, $scope, $http, $rootScope, dataService, ACCESS_TOKEN, $mdSidenav, $mdUtil, $log) {
-
-        function buildToggler(navID) {
-            var debounceFn =  $mdUtil.debounce(function(){
-                $mdSidenav(navID)
-                    .toggle()
-                    .then(function () {
-                        $log.debug("toggle " + navID + " is done");
-                    });
-            },200);
-            return debounceFn;
-        }
-
-        $scope.toggleLeft = buildToggler('left');
-
-        console.log($stateParams);
-
-        $scope.title = 'Sample Angular Node App!!';
+    .controller('MapCtrl', function ($state, $stateParams, $scope, $http, $rootScope,
+                                     dataService, mapService, stateService, ACCESS_TOKEN, $mdSidenav, $mdUtil, $log) {
 
         mapboxgl.accessToken = ACCESS_TOKEN;
 
@@ -75,12 +59,12 @@ angular.module('myApp')
 
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/bright-v9',
-            center: [-0.15591514, 51.51830379],
-            zoom: 0
+            style: 'mapbox://styles/mapbox/bright-v9'
         });
 
-        map.on('load', function () {
+        mapService.init(map);
+
+        mapService.map.on('load', function () {
             // add layer source
             //map.addSource('tjk', tjksource);
             //map.addLayer(tjkoutline);
@@ -89,42 +73,23 @@ angular.module('myApp')
             map.addLayer(ftfzoilayer);
         });
 
-        map.on('click', function (e) {
+        mapService.map.on('click', function (e) {
 
-            $scope.toggleLeft();
+            stateService.toggleParam('left-panel');
 
-            var features = map.queryRenderedFeatures(e.point, {
-                layers: ['ftfzoilayer'] ,
-                radius: 10,
-                includeGeometry: true
-            });
+            //$scope.toggleLeft();
 
-            if (!features.length){
-                return;
-            }
+            //var features = map.queryRenderedFeatures(e.point, {
+            //    layers: ['ftfzoilayer'] ,
+            //    radius: 10,
+            //    includeGeometry: true
+            //});
+            //
+            //if (!features.length){
+            //    return;
+            //}
 
-            console.log(features);
+            //console.log(features);
         });
 
-        map.on('move', function (e){
-            var lat = map.getCenter().lat.toFixed(4);
-            var lng = map.getCenter().lng.toFixed(4);
-            var zoom = map.getZoom().toFixed(2);
-
-            if ($stateParams.lat !== lat || $stateParams.lng !== lng || $stateParams.zoom !== zoom) {
-                $stateParams.lat = lat;
-                $stateParams.lng = lng;
-                $stateParams.zoom = zoom;
-                $state.go('map', $stateParams, {
-                    // prevent the events onStart and onSuccess from firing
-                    notify: false,
-                    // prevent reload of the current state
-                    reload: false,
-                    // replace the last record when changing the params so you don't hit the back button and get old params
-                    location: 'replace',
-                    // inherit the current params on the url
-                    inherit: true
-                })
-            }
-        })
     });

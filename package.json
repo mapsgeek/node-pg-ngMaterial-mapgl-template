@@ -28,8 +28,13 @@
   },
   "dependencies": {
     "cheap-ruler": "^2.4.1",
+    "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-github2": "^0.1.10",
+    "passport-linkedin": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "pg-native": "^1.10.0",
     "q": "^1.4.1"
   }

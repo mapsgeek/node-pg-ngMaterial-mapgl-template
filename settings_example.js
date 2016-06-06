@@ -11,5 +11,11 @@ module.exports = {
         database: 'db_name',
         user: 'user',
         password: 'password'
+    },
+    auth: {secret: 'your secret'},
+    github: {
+        clientID: 'clientid',
+        clientSecret: 'clientsecret',
+        callbackURL: "http://127.0.0.1:4000/api/auth/github/callback"
     }
 };

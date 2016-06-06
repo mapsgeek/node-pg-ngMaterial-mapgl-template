@@ -5,3 +5,7 @@ md-backdrop.md-opaque.md-default-theme, md-backdrop.md-opaque {
 md-backdrop {
     display: none;
 }
+
+.open {
+    background-color: red;
+}

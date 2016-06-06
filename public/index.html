@@ -21,9 +21,11 @@
 <div class="container-fluid-inner" ng-controller="MainCtrl">
 
     <!-- Left Side Nav-->
-    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+    <md-sidenav md-is-open="stateService.isParam('left-panel')"
+                class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+
         <md-toolbar class="md-theme-light">
-            <h1 class="md-toolbar-tools">Sidenav Right</h1>
+            <h1 class="md-toolbar-tools">Sidenav Left</h1>
         </md-toolbar>
         <md-content layout-padding>
             <form>
@@ -40,9 +42,10 @@
     </md-sidenav>
 
     <!-- Right Side Nav-->
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+    <md-sidenav md-is-open="stateService.isParam('right-panel')"
+                class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
         <md-toolbar class="md-theme-light">
-            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            <h1 class="md-toolbar-tools">Sidenav Right</h1>
         </md-toolbar>
         <md-content layout-padding>
             <form>
@@ -58,18 +61,17 @@
         </md-content>
     </md-sidenav>
 
-
     <!-- Toolbar -->
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+            <md-button ng-click="stateService.openParam('left-panel')" class="md-icon-button" aria-label="Settings">
                 <i class="material-icons">menu</i>
             </md-button>
             <h2>
                 <span>{{title}}</span>
             </h2>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="Favorite">
+            <md-button ng-click="stateService.toggleParam('right-panel')" class="md-icon-button" aria-label="Favorite">
                 <i style="color: greenyellow;" class="material-icons">favorite</i>
             </md-button>
             <md-button ng-click="toggleRight()" class="md-icon-button" aria-label="More">
@@ -97,7 +99,10 @@
 <script src="app/config.js"></script>
 <script src="app/controllers/map.js"></script>
 <script src="app/controllers/main.js"></script>
+<script src="app/controllers/login.js"></script>
 <script src="app/services/dataService.js"></script>
+<script src="app/services/stateService.js"></script>
+<script src="app/services/mapService.js"></script>
 
 </body>
 </html>

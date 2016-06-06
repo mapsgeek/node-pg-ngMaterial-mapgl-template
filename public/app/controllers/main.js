@@ -1,5 +1,7 @@
-angular.module('myApp').controller('MainCtrl', function ($scope, $timeout, $mdSidenav, $log, $mdUtil, $mdMedia) {
+angular.module('myApp').controller('MainCtrl', function ($scope, stateService, $timeout, $mdSidenav, $log, $mdUtil, $mdMedia) {
     $scope.title = "kickstart";
+
+    $scope.stateService = stateService;
 
     $scope.close = function (location) {
         // Component lookup should always be available since we are not using `ng-if`
