@@ -13,8 +13,10 @@ var passport = require('passport');
 var session = require('express-session');
 var settings = require('./settings');
 var flash = require('express-flash');
-
-var api = require('./routes/api');
+var jwt = require('express-jwt');
+var auth = require('./routes/auth');
+var unless = require('express-unless');
+jwt.unless = unless;
 
 
 // configuration =================
@@ -25,7 +27,7 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
-app.use(session({secret: settings.auth.secret, resave: true, saveUninitialized: true}));
+app.use(session({secret: settings.auth.secret, resave: true, saveUninitialized: true, cookie: { maxAge: settings.auth.expiration }}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,8 +51,34 @@ app.all('*',function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+app.use('/api', auth);
+app.use(jwt({
+    secret: settings.auth.secret,
+    getToken: function fromHeaderOrQuerystring(req) {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            return req.headers.authorization.split(' ')[1];
+        } else if (req.query && req.query.token) {
+            return req.query.token;
+        }
+        return null;
+    }
+}).unless({
+    path: [
+        '/login',
+        '/favicon.ico'
+    ]
+}));
 
-app.use('/api', api);
+// Also catch JWT Authorization failures.
+app.use(function (err, req, res, next) {
+    if (err && err.name === 'UnauthorizedError') {
+        err.authenticated = false;
+        res.status(401).json(err);
+    }
+    else if (err) {
+        res.status(err.status || 500).json({ status: 'ERROR', errCode: err.status || 500, error: err });
+    }
+});
 
 // listen (start app with node server.js) ======================================
 app.listen(4000);

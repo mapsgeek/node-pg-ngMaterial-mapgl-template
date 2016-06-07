@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passportGithub = require('../auth/github');
-var passport = require('passport');
-var jwt = require('jsonwebtoken');
+var jwtUtility = require('../auth/jwtUtility');
 
 
 //var auth = function(req, res, next){
@@ -16,7 +15,7 @@ var jwt = require('jsonwebtoken');
 
 router.get('/user', function(req,res,next){
     if (req.isAuthenticated()) {
-        res.status(200).json(req.user)
+        jwtUtility.getToken(res, req.user)
     } else {
         res.status(401).json({error:"User unauthorized"})
     }

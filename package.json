@@ -29,7 +29,10 @@
   "dependencies": {
     "cheap-ruler": "^2.4.1",
     "express-flash": "0.0.2",
+    "express-jwt": "^3.4.0",
     "express-session": "^1.13.0",
+    "express-unless": "^0.3.0",
+    "jsonwebtoken": "^7.0.0",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",

@@ -1,12 +1,13 @@
 var jwtUtility = {};
 var jwt = require('jsonwebtoken');
+var settings = require('../settings')
 
 jwtUtility.getToken = function (res, user){
 
     var jwtObj = {};
 
-    var token = jwt.sign(jwtObj, config.auth.secret, {
-        expiresIn : config.auth.expiresIn
+    var token = jwt.sign(jwtObj, settings.auth.secret, {
+        expiresIn : settings.auth.expiration
     });
 
     jwtObj.token = token;
@@ -18,4 +19,4 @@ jwtUtility.getToken = function (res, user){
 
 };
 
-router.exports = jwtUtility;
+module.exports = jwtUtility;
