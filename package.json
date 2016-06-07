@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "cheap-ruler": "^2.4.1",
+    "express-flash": "0.0.2",
     "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",

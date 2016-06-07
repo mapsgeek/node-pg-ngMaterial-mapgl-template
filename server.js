@@ -12,6 +12,7 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 var passport = require('passport');
 var session = require('express-session');
 var settings = require('./settings');
+var flash = require('express-flash');
 
 var api = require('./routes/api');
 
@@ -24,13 +25,30 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
-app.use(session({
-    secret: settings.auth.secret,
-    resave: true,
-    saveUninitialized: true
-}));
+app.use(session({secret: settings.auth.secret, resave: true, saveUninitialized: true}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Add headers
+app.all('*',function (req, res, next) {
+
+    // Websites to provide access to the API
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
 
 app.use('/api', api);
 

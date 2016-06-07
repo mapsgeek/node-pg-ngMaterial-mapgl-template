@@ -9,33 +9,14 @@ var init = require('./init');
 passport.use(new GitHubStrategy({
         clientID: settings.github.clientID,
         clientSecret: settings.github.clientSecret,
-        callbackURL: settings.github.callbackURL
+        callbackURL: settings.github.callbackURL,
+        passReqToCallback: true
     },
-    function(accessToken, refreshToken, profile, done) {
+    function(req, accessToken, refreshToken, profile, done) {
 
-        var searchQuery = {
-            name: profile.displayName
-        };
-
-        var updates = {
-            name: profile.displayName,
-            someID: profile.id
-        };
-
-        var options = {
-            upsert: true
-        };
-
-        console.log('CooooL');
-
-        // update the user if s/he exists or add a new user
-        //User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-        //    if(err) {
-        //        return done(err);
-        //    } else {
-        //        return done(null, user);
-        //    }
-        //});
+        console.log('GitHub login complete.');
+        req.flash('info', { msg: 'GitHub account has been linked.' });
+        done(null, profile);
     }
 
 ));
