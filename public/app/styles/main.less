@@ -1,0 +1,76 @@
+@import 'variables.less';
+
+body {
+  overflow-x: hidden;
+}
+
+.main-content {
+  margin-top:56px;
+}
+
+md-toolbar {
+  background-color: @accent-color !important;
+  position: absolute;
+  z-index: 3;
+  min-height: 56px;
+  max-height: 56px;
+  height: 56px;      cursor: pointer;
+  .docs-toolbar-tools {
+    padding: 0;
+    margin: 0 24px;
+    //width: auto;
+  }
+  .md-toolbar-tools {
+    height: 56px;
+    max-height: 56px;
+    .md-button.md-icon-button {
+      //margin-top: 20px;
+      i {
+        //font-size: 30px;
+      }
+    }
+    .title {
+      font-weight: 500;
+      font-size:16px;
+      cursor: pointer;
+    }
+    .title:focus {outline:0;}
+  }
+}
+
+.show-right-panel-button {
+  position: relative;
+  right: 0
+}
+
+//panels
+md-sidenav {
+  position: absolute;
+  .headers {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-size: 14px;
+    padding: 0 16px;
+    margin-bottom: 0;
+    color: #3D3D3D;
+  }
+}
+
+//left panel
+md-sidenav.md-sidenav-left {
+  min-width: 250px !important;
+  width: 250px !important;
+  max-width: 250px !important;
+  background-color: #fff;
+}
+
+md-sidenav._md-locked-open {
+  margin-top: 0;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.divider {
+  border-bottom: rgb(224,224,224) solid 1px;
+}

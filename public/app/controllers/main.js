@@ -1,37 +1,30 @@
-angular.module('myApp').controller('MainCtrl', function ($scope, stateService, $timeout, $mdSidenav, $log, $mdUtil, $mdMedia) {
+angular.module('myApp').controller('MainCtrl', function ($scope, stateService, $timeout, $mdSidenav, $log, $mdUtil, $mdMedia, $rootScope) {
+
+    $scope.hideToolbars = typeof $rootScope.user == "undefined";
+
     $scope.title = "kickstart";
 
     $scope.stateService = stateService;
 
-    $scope.close = function (location) {
+    $scope.leftPanelOpen = $mdMedia('gt-sm');
+    $(window).resize(function(){
+        $scope.leftPanelOpen = $mdMedia('gt-sm');
+    });
+
+    $scope.close = function (id) {
         // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(location).close()
+        $mdSidenav(id).close()
             .then(function () {
-                $log.debug("close " + location +" is done");
+                $log.debug("close " + id +" is done");
             });
     };
 
-    $scope.open = function () {
+    $scope.open = function (id) {
         // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav('left').open()
+        $mdSidenav(id).open()
             .then(function () {
-                $log.debug("open LEFT is done");
+                $log.debug("open " + id + "is done");
             });
     };
 
-    function buildToggler(navID) {
-        var debounceFn =  $mdUtil.debounce(function(){
-            $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-        },200);
-        return debounceFn;
-    }
-
-    $scope.toggleLeft = buildToggler('left');
-
-    $scope.toggleRight = buildToggler('right');
-
-})
+});

@@ -1,8 +1,7 @@
 <md-content layout-padding>
 
-    <form method="GET" action="/api/auth/github">
-        <i class="fa fa-github" style="font-size:48px;cursor: pointer;" aria-hidden="true"></i> Github
-        <input ng-click="test()" type="submit" />
+    <form id="login-github" method="GET" action="/api/auth/github">
+        <i ng-click="submit('github')" class="fa fa-github" style="font-size:48px;cursor: pointer;" aria-hidden="true"></i> Github
     </form>
 
 </md-content>

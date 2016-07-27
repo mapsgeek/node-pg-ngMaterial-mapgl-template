@@ -51,34 +51,43 @@ app.all('*',function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-app.use('/api', auth);
-app.use(jwt({
-    secret: settings.auth.secret,
-    getToken: function fromHeaderOrQuerystring(req) {
-        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            return req.headers.authorization.split(' ')[1];
-        } else if (req.query && req.query.token) {
-            return req.query.token;
-        }
-        return null;
-    }
-}).unless({
-    path: [
-        '/login',
-        '/favicon.ico'
-    ]
-}));
 
-// Also catch JWT Authorization failures.
-app.use(function (err, req, res, next) {
-    if (err && err.name === 'UnauthorizedError') {
-        err.authenticated = false;
-        res.status(401).json(err);
-    }
-    else if (err) {
-        res.status(err.status || 500).json({ status: 'ERROR', errCode: err.status || 500, error: err });
-    }
-});
+
+if(settings.authentication === true) {
+    app.use('/api', auth);
+
+    app.use(jwt({
+        secret: settings.auth.secret,
+        getToken: function fromHeaderOrQuerystring(req) {
+            if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+                return req.headers.authorization.split(' ')[1];
+            } else if (req.query && req.query.token) {
+                return req.query.token;
+            }
+            return null;
+        }
+    }).unless({
+        path: [
+            '/login',
+            '/favicon.ico'
+        ]
+    }));
+
+// catch JWT Authorization failures
+    app.use(function (err, req, res, next) {
+        if (typeof req.user !== "undefined" && new Date(req.session.cookie._expires) > new Date()) {
+            console.log('Session has not expired');
+            next();
+        }
+        else if (err && err.name === 'UnauthorizedError') {
+            err.authenticated = false;
+            res.redirect('/login');
+        }
+        else if (err) {
+            res.status(err.status || 500).json({status: 'ERROR', errCode: err.status || 500, error: err});
+        }
+    });
+}
 
 // listen (start app with node server.js) ======================================
 app.listen(4000);

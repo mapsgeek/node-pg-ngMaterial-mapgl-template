@@ -12,6 +12,7 @@ module.exports = {
         user: 'user',
         password: 'password'
     },
+    authentication:'true or false',
     auth: {secret: 'your secret'},
     github: {
         clientID: 'clientid',

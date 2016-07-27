@@ -3,12 +3,8 @@ angular.module('myApp').controller('LoginCtrl', function ($scope, stateService, 
 
     $scope.stateService = stateService;
 
-    $scope.login = function (strategy) {
-        var promise = userService.logIn(strategy);
-    };
-
-    $scope.test = function(){
-        console.log('test');
+    $scope.submit = function(strategy){
+        $("#login-" + strategy).submit();
     }
 
 })
