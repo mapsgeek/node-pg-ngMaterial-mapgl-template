@@ -16,49 +16,12 @@ module.exports = function(grunt) {
 
     //configuration for grunt plugins
     grunt.initConfig({
-        /* These are the configs for the uglify(minify) taskrunner
-         * run uglify whenever js changes
-         */
-        uglify: {
-            options: {
-                mangle: false
-            },
-            js: {
-                files: {
-                    'public/build/kickstart_uglify_js.js': [
-                    //js to be uglified
-                        //app
-                        'public/app.js',
-                        //config
-                        'public/app/config.js',
-                        //services
-                        'public/app/services/stateService.js',
-                        'public/app/services/userService.js',
-                        'public/app/services/dataService.js',
-                        'public/app/services/mapService.js',
-                        //controllers
-                        'public/app/controllers/login.js',
-                        'public/app/controllers/main.js',
-                        'public/app/controllers/map.js'
-                    ]
-                }
-            },
-            //css: {
-            //    files: {
-            //        'public/build/kickstart_css.css' : [
-            //        //css to be uglified
-            //            'public/app/styles/main.css',
-            //            'public/app/styles/map.css'
-            //        ]
-            //    }
-            //}
-        },
         /* These are the configs for the less compiler taskrunner
          * run less whenever css changes
          */
         concat: {
             dist: {
-                src: [ //js to be uglified
+                src: [ //js to be concatenated
                     //app
                     'public/app.js',
                     //config
@@ -97,7 +60,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 //if any of these files change
-                files: ['public/app/**/*.js'],
+                files: ['public/app/**/*.js', 'public/*.js'],
                 //run these tasks
                 tasks: ['concat']
             },

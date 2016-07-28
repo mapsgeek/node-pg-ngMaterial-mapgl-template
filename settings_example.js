@@ -12,7 +12,8 @@ module.exports = {
         user: 'user',
         password: 'password'
     },
-    authentication:'true or false',
+    port: 4000,
+    authentication:false,
     auth: {secret: 'your secret'},
     github: {
         clientID: 'clientid',

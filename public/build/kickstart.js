@@ -7,7 +7,7 @@ angular.module('myApp', [
 ]).
     config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, jwtInterceptorProvider) {
 
-        $urlRouterProvider.otherwise("/map/@47.6201,-122.3519,9.34");
+        $urlRouterProvider.otherwise("/login");
 
         $stateProvider
             .state('map', {
@@ -42,6 +42,7 @@ angular.module('myApp', [
             return {
                 response: function (response) {
                     // do something on success
+                    $location.url('/map/@14.1394,32.9774,1.96');
                     return response;
                 }, responseError: function (response) {
                     if (response.status === 304) $location.url('/login');
@@ -56,7 +57,7 @@ angular.module('myApp', [
 
 angular.module('myApp.config', [])
 
-    .constant('ACCESS_TOKEN', 'pk.eyJ1IjoiZGFuaWVsZHVoaCIsImEiOiJwaGJFeTlFIn0.yN6caVQJ2ZoqDIMMht_SVQ' );
+    .constant('ACCESS_TOKEN', 'pk.eyJ1Ijoic3BhdGlhbGRldiIsImEiOiJKRGYyYUlRIn0.PuYcbpuC38WO6D1r7xdMdA' );
 var app = angular.module("myApp")
     .service("dataService", ['$http', '$q', function ($http, $q, ENV) {
 

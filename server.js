@@ -90,8 +90,8 @@ if(settings.authentication === true) {
 }
 
 // listen (start app with node server.js) ======================================
-app.listen(4000);
-console.log("App listening on port 4000");
+app.listen(settings.port || 4000);
+console.log("App listening on port " + settings.port || 4000);
 
 // application -------------------------------------------------------------
 app.get('*',function(req,res){
