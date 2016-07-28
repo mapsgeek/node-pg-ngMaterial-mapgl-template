@@ -24,15 +24,13 @@ it easier to serve the files by a webserver.*
 
 ### Settings & configuration
 * Add [settings.js](settings-example.js) file in the root using the example as a template
-* Update db credentials
-
 * Add [config.js] (config-example.js) in `public/` and include your [MapboxGL](https://www.mapbox.com/mapbox-gl-js/api/) access token
 
 #### Authentication
 * GitHub authentication is turned off by default. To enable this feature, set the `authentication` 
-property in the [settings file](settings_example.js) to true. This feature also requires your github
-`clientId`, `clientSecret`, and `callbackURL`. By default, the `callbackURL points to the our local port, 4000, also configurable 
-[settings.js](settings-example.js). With this feature turned on, users are required to login into GitHub to enter the application
+property in the [settings file](settings_example.js) to true. This feature also requires your GitHub
+`clientId`, `clientSecret`, and `callbackURL`. By default, the `callbackURL` points to the our local port, 4000, also configurable in
+[settings.js](settings-example.js). With this feature turned on, users are required to login into GitHub to enter the map application
 
 ### Serve & Build the application & watch for changes
 * `grunt build watch`
