@@ -5,13 +5,13 @@
 
 module.exports = {
     // Postgres Database Connection
-    pg: {
-        server: 'localhost',
-        port: '5432',
-        database: 'db_name',
-        user: 'user',
-        password: 'password'
-    },
+    //pg: {
+    //    server: 'localhost',
+    //    port: '5432',
+    //    database: 'db_name',
+    //    user: 'user',
+    //    password: 'password'
+    //},
     port: 4000,
     authentication:false,
     auth: {secret: 'your secret'},
