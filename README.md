@@ -23,14 +23,14 @@ angular-seed changes this location through the `.bowerrc` file.  Putting it in t
 it easier to serve the files by a webserver.*
 
 ### Settings & configuration
-* Add [settings.js](settings-example.js) file in the root using the example as a template
-* Add [config.js] (config-example.js) in `public/` and include your [MapboxGL](https://www.mapbox.com/mapbox-gl-js/api/) access token
+* Add [settings.js](settings_example.js) file in the root using the example as a template
+* Add [config.js] (config_example.js) in `public/app` and include your [MapboxGL](https://www.mapbox.com/mapbox-gl-js/api/) access token
 
 #### Authentication
 * GitHub authentication is turned off by default. To enable this feature, set the `authentication` 
 property in the [settings file](settings_example.js) to true. This feature also requires your GitHub
 `clientId`, `clientSecret`, and `callbackURL`. By default, the `callbackURL` points to the our local port, 4000, also configurable in
-[settings.js](settings-example.js). With this feature turned on, users are required to login into GitHub to enter the map application
+[settings.js](settings_example.js). With this feature turned on, users are required to login into GitHub to enter the map application
 
 ### Serve & Build the application & watch for changes
 * `grunt build watch`
