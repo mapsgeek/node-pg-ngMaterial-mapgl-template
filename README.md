@@ -24,7 +24,7 @@ it easier to serve the files by a webserver.*
 
 ### Settings & configuration
 * Add [settings.js](settings_example.js) file in the root using the example as a template
-* Add [config.js] (config_example.js) in `public/app` and include your [MapboxGL](https://www.mapbox.com/mapbox-gl-js/api/) access token
+* Add [config.js] (public/app/config_example.js) in `public/app` and include your [MapboxGL](https://www.mapbox.com/mapbox-gl-js/api/) access token
 
 #### Authentication
 * GitHub authentication is turned off by default. To enable this feature, set the `authentication` 

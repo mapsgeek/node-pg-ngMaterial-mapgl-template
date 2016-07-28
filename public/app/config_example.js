@@ -1,4 +1,4 @@
 
 angular.module('myApp.config', [])
 
-    .constant('ACCESS_TOKEN', '' );
+    .constant('ACCESS_TOKEN', 'yourAccessToken' );
