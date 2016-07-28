@@ -37,3 +37,5 @@ property in the [settings file](settings_example.js) to true. This feature also 
 ### Serve & Build the application & watch for changes
 * `grunt build watch`
 * `node server.js`
+
+The app is now running @ http://127.0.0.1:4000 !!!!
