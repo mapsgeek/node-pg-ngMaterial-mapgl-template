@@ -13,12 +13,12 @@ angular.module('myApp', [
             .state('map', {
                 url: "/map/@{lat},{lng},{zoom}?left-panel&right-panel",
                 //url: "/map",
-                templateUrl: "./app/templates/map.html",
+                templateUrl: "node-pg-ngMaterial-mapgl-template/app/templates/map.html",
                 controller: 'MapCtrl'
             })
             .state('login', {
                 url: "/login",
-                templateUrl: "./app/templates/login.html",
+                templateUrl: "node-pg-ngMaterial-mapgl-template/app/templates/login.html",
                 controller: 'LoginCtrl'
             });
 
