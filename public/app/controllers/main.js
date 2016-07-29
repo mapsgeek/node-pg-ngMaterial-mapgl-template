@@ -2,7 +2,7 @@ angular.module('myApp').controller('MainCtrl', function ($scope, stateService, $
 
     $scope.hideToolbars = typeof $rootScope.user == "undefined";
 
-    $scope.title = "kickstart";
+    $scope.title = "ITC Projects";
 
     $scope.stateService = stateService;
 

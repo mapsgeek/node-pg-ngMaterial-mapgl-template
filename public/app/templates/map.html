@@ -4,8 +4,36 @@
 <!-- Right Side Nav-->
 <md-sidenav class="md-sidenav-right md-whiteframe-8dp" md-component-id="right" ng-cloak>
     <md-content layout-padding>
-        <div ng-repeat="(key, value) in details.properties">
-            {{key}}: {{value}}
+        <!--<div ng-repeat="(key, value) in details.properties">-->
+            <!---->
+            <!--{{key}}: {{value}}-->
+        <!--</div>-->
+      <div> <span class="title"> Country: </span> {{details.properties["ADM0_NAME"]}}</div>
+       <div> <span class="title"> Total Number of Projects: </span> {{details.properties["All_Proj"]}}</div>
+        <div><span class="title"> Number of ITC Projects: </span> {{details.properties["ITC_ProjTot"]}}</div>
+        <div><span class="title"> ITC Projects: </span>
+            <ul>
+                <li class="list" ng-repeat="i in itcprojects">{{i}}</li>
+            </ul>
         </div>
+        <div><span class="title"> Number of SpatialDev Projects: </span> {{details.properties["SD_ProjTot"]}}</div>
+        <div><span class="title"> SpatialDev Projects: </span><ul>
+            <li class="list" ng-repeat="i in sdprojects">{{i}}</li>
+        </ul></div>
+
+
+
+
     </md-content>
 </md-sidenav>
+
+<!--Legend-->
+<div id='country-legend' class='legend'>
+    <h4>Number of Projects</h4>
+    <div><span style='background-color: #006837'></span><25</div>
+    <div><span style='background-color: #31A355'></span>21-25</div>
+    <div><span style='background-color: #78C679'></span>16-20</div>
+    <div><span style='background-color: #C2E699'></span>11-15</div>
+    <div><span style='background-color: #FFFFCC'></span>1-10</div>
+    <div><span style='background-color: #BAC4BD'></span>0</div>
+</div>

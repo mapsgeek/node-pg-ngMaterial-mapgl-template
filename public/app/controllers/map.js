@@ -4,41 +4,44 @@ angular.module('myApp')
 
         mapboxgl.accessToken = ACCESS_TOKEN;
 
-        var source = {
-            "tiles": ["http://spatialserver.spatialdev.com/services/vector-tiles/regional_capitals/{z}/{x}/{y}.pbf"],
-            "type": "vector"
-        };
+        // var source = {
+        //     "tiles": ["http://spatialserver.spatialdev.com/services/vector-tiles/regional_capitals/{z}/{x}/{y}.pbf"],
+        //     "type": "vector"
+        // };
 
-        var layer = {
-            "id": "eth_regional_capital",
-            "layout": {
-                "visibility": "visible"
-            },
-            "source": "source",
-            "source-layer": "Regional_capital",
-            "interactive": true,
-            "type": "circle",
-            "paint": {
-                "circle-color": "red"
-            }
-        };
+        // var layer = {
+        //     "id": "eth_regional_capital",
+        //     "layout": {
+        //         "visibility": "visible"
+        //     },
+        //     "source": "source",
+        //     "source-layer": "Regional_capital",
+        //     "interactive": true,
+        //     "type": "circle",
+        //     "paint": {
+        //         "circle-color": "red"
+        //     }
+        // };
 
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/bright-v9'
+            style: 'mapbox://styles/spatialdev/cir5jc4rr0002btm346pmvyi8'
         });
 
         mapService.init(map);
 
         map.on('load', function () {
-            map.addSource('source', source);
-            map.addLayer(layer);
+            // map.addSource('source', source);
+            // map.addLayer(layer);
         });
 
         map.on('click', function (e) {
 
+            $scope.itcprojects=[];
+            $scope.sdprojects=[];
+
             var features = map.queryRenderedFeatures(e.point, {
-                layers: [layer.id],
+                layers: ["all_countries"],
                 radius: 10,
                 includeGeometry: true
             });
@@ -46,6 +49,9 @@ angular.module('myApp')
             if (features.length>0) {
                 $scope.open('right');
                 $scope.details = features[0];
+                console.log($scope.details)
+                $scope.itcprojects=$scope.details.properties["ITC_ProjectName"].split("|");
+                $scope.sdprojects=$scope.details.properties["SD_ProjectName"].split("|");
             }
         });
 
