@@ -23,20 +23,20 @@ module.exports = function(grunt) {
             dist: {
                 src: [ //js to be concatenated
                     //app
-                    'public/app.js',
+                    'app.js',
                     //config
-                    'public/app/config.js',
+                    'app/config.js',
                     //services
-                    'public/app/services/dataService.js',
-                    'public/app/services/mapService.js',
-                    'public/app/services/stateService.js',
-                    'public/app/services/userService.js',
+                    'app/services/dataService.js',
+                    'app/services/mapService.js',
+                    'app/services/stateService.js',
+                    'app/services/userService.js',
                     //controllers
-                    'public/app/controllers/login.js',
-                    'public/app/controllers/main.js',
-                    'public/app/controllers/map.js'
+                    'app/controllers/login.js',
+                    'app/controllers/main.js',
+                    'app/controllers/map.js'
                 ],
-                dest: 'public/build/kickstart.js'
+                dest: 'build/kickstart.js'
             }
         },
         /* These are the configs for the less compiler taskrunner
@@ -45,11 +45,11 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    'public/build/kickstart_css.css': [
+                    'build/kickstart_css.css': [
                         //less to be compiled
-                        'public/app/styles/main.less',
-                        'public/app/styles/map.less',
-                        'public/app/styles/login.less'
+                        'app/styles/main.less',
+                        'app/styles/map.less',
+                        'app/styles/login.less'
                     ]
                 }
             }
@@ -60,13 +60,13 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 //if any of these files change
-                files: ['public/app/**/*.js', 'public/*.js'],
+                files: ['app/**/*.js', '*.js'],
                 //run these tasks
                 tasks: ['concat']
             },
             less: {
                 //if any of these files change
-                files: ['public/app/**/*.less'],
+                files: ['app/**/*.less'],
                 //run these tasks
                 tasks: ['less']
             }
@@ -75,14 +75,14 @@ module.exports = function(grunt) {
          * run css lint before uglifying
          */
         jshint: {
-            all: ['Gruntfile.js', 'public/app/**/*.js']
+            all: ['Gruntfile.js', 'app/**/*.js']
         },
         csslint: {
             strict: {
                 options: {
                     import: 2
                 },
-                src: ['public/build/*.css']
+                src: ['build/*.css']
             }
         }
     });
